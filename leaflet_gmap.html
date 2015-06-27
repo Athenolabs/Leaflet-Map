@@ -2,83 +2,38 @@
 	<head>
 		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+		<script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-		<script type="text/javascript">
-		function initialize() {
-			var map = L.map('weathermap').setView([23, 79], 5);
-			var coordinates = document.getElementById('infoPanel');
-			var OpenMapSurfer_Roads = L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
-				maxZoom: 20,
-				attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-			}).addTo(map);
+		<script src="../Leaflet GMap/leaflet_gmap.js"></script>
+		<link href="../Leaflet GMap/leaflet_gmap.css" rel="stylesheet">
 
-			var add = document.getElementById("select");
-        	var address = add.options[add.selectedIndex].text;
-
-			
-			// map.on('geosearch_showlocation', function (result) {
-			// 		console.log(result)
-   //  				L.marker([result.x, result.y]).addTo(map)
-    				
-			// 	});
-			
-			map.on('click', function(e) {
-    			alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
-			});
-
-			var marker = L.marker([23, 79],{
-				draggable: true
-			}).addTo(map);
-			marker.on('dragend', ondragend);
-			ondragend();
-
-			function ondragend() {
-    			var m = marker.getLatLng();
-    			coordinates.innerHTML = 'Latitude: ' + m.lat + '<br />Longitude: ' + m.lng;
-			}
-			marker.on('click', function () {
-    			map.zoomIn(3);
-			});
-		}
-
-		function MyOption() {
-			var add = document.getElementById("select");
-        	var address = add.options[add.selectedIndex].text;
-			console.log(address)
-		}
-
-		</script>
-
-		<style>
-			#search{
-				margin-bottom: 15px;
-			}
-			#weathermap { 
-				margin-top: 15px; 
-			}
-			#select{
-				margin-left: 15px;
-			}
-			#infoPanel{
-				margin-top: 15px;
-				margin-bottom: 15px;
-			}
-		</style>
+		<script type="text/javascript"></script>
 	</head>
 
 	<body>	
-		<button name="search" value="Search" style="width:80px; height:30px;" onclick="initialize()">Load Map</button>
 		<select id="select" style="width:120px; height:30px;" onchange="MyOption()">
-			<option>Pune</option>
-			<option>Mumbai</option>
-			<option>Satara</option>
-			<option>Nagpur</option>
-			<option>Nashik</option>
+			<option value="au">Australia</option>
+          	<option value="br">Brazil</option>
+         	<option value="ca">Canada</option>
+          	<option value="fr">France</option>
+          	<option value="de">Germany</option>
+          	<option value="in" selected>India</option>
+          	<option value="mx">Mexico</option>
+          	<option value="nz">New Zealand</option>
+          	<option value="it">Italy</option>
+          	<option value="za">South Africa</option>
+          	<option value="es">Spain</option>
+          	<option value="pt">Portugal</option>
+          	<option value="us">U.S.A.</option>
+          	<option value="uk">United Kingdom</option>
 		</select>
+		Enter Address :
+		<input id="address" type="text" name="add" style="height:30px; width:280px;">
 		<div id="infoPanel">
       		<!-- <b id="lat">Latitude </b><input class="lat" type="text" id="latitude" style="height:30px; width:220px;" placeholder="Latitude"/>
       		<b id="lon">Longitude  </b><input class="lon" type="text" id="longitude" style="height:30px; width:220px;" placeholder="Longitude"/> -->
     	</div>
-		<div id="weathermap" style="width:700px; height:400px;"></div>
+		<div id="map_canvas" style="width:800px; height:480px;"></div>
 	</body>
 </html>

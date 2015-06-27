@@ -1,0 +1,16 @@
+	#map_canvas { 
+		margin-top: 15px; 
+		margin-left: 10px;
+	}
+	#select{
+		margin-left: 10px;
+		margin-right: 25px;
+	}
+	#infoPanel{
+		margin-left: 10px;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	#address{
+		margin-left: 5px;
+	}
